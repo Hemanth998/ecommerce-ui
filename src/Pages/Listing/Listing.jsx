@@ -1,4 +1,5 @@
 import Card from '../../Components/Card/Card';
+import products from '../../data';
 const Listing = () => {
   return (
     <div className="container">
@@ -7,18 +8,13 @@ const Listing = () => {
         <div className="col">Filter section</div>
       </div>
       <div className="row g-2">
-        <div className="col">
-          <Card />
-        </div>
-        <div className="col">
-          <Card />
-        </div>
-        <div className="col">
-          <Card />
-        </div>
-        <div className="col">
-          <Card />
-        </div>
+        {products.map((product) => {
+          return (
+            <div className="col" key={product.id}>
+              <Card product={product} />
+            </div>
+          );
+        })}
       </div>
     </div>
   );

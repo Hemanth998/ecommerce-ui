@@ -1,17 +1,19 @@
 import './Card.css';
-const Card = () => {
+import { Link } from 'react-router-dom';
+const Card = ({ product }) => {
   return (
     <div className="card" style={{ width: '18rem' }}>
-      <img src="/img/productImg.jpg" className="card-img-top" alt="..." />
+      <img src={product.image} className="card-img-top" alt="..." />
       <div className="card-body">
-        <h5 className="card-title">Card title</h5>
+        <h5 className="card-title">{product.name}</h5>
         <p className="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
+          {product.description.length > 50
+            ? product.description.slice(0, 50) + '...'
+            : product.description}
         </p>
-        <a href="#" className="btn btn-primary">
-          Go somewhere
-        </a>
+        <Link to={`/product/${product.id}`} className="btn btn-primary">
+          View Details
+        </Link>
       </div>
     </div>
   );

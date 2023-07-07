@@ -1,5 +1,10 @@
 import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import products from '../../data';
 const ProductDetail = () => {
+  const { id } = useParams();
+  console.log(products);
+  const product = products.find((product) => product.id === parseInt(id));
   return (
     <div className="container">
       <div className="row">
@@ -14,29 +19,25 @@ const ProductDetail = () => {
       <div className="row">
         <div className="col-6">
           <img
-            src="/img/prodImageTwo.jpg"
+            src={product.image}
             alt="product"
             className="img-fluid rounded"
           />
         </div>
         <div className="col-6">
-          <h1>Product Name</h1>
+          <h1>{product.name}</h1>
+          <p>{product.description}</p>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
-            voluptatum, quibusdam, quia, quae voluptates voluptatem quos
-            voluptatibus quod doloribus quas natus. Quisquam voluptatum,
-            quibusdam, quia, quae voluptates voluptatem quos voluptatibus quod
-            doloribus quas natus.
+            Price : <strong>Rs. {product.price}</strong>
           </p>
           <p>
-            Price : <strong>Rs. 1000</strong>
+            Rating : <strong>{product.rating}</strong>
           </p>
-          <p>
-            Rating : <strong>4.5</strong>
-          </p>
-          <button type="button" className="btn btn-primary ms-auto">
-            Add to Cart
-          </button>
+          <Link to="/cart" className="btn btn-primary">
+            <button type="button" className="btn btn-primary ms-auto">
+              Add to Cart
+            </button>
+          </Link>
         </div>
       </div>
     </div>
